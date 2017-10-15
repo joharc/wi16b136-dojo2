@@ -6,7 +6,24 @@
         xmlns:local="clr-namespace:wi16b136_dojo2"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+    <Grid Background="Black">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border BorderBrush="Red" BorderThickness="1" Margin="5">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">Überlauf Grauwasser</TextBlock>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="1">
+                
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
