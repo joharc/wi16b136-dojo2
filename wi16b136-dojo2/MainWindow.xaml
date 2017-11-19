@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wi16b136_dojo2"
         mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         Title="MainWindow" Height="800" Width="525">
     <Grid Background="Black">
         <Grid>
@@ -16,16 +17,31 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0" BorderBrush="Red" BorderThickness="1" Margin="5">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image Margin="0 0 10 0" Source="/assets/img/Warning-WF.png"></Image>
+                        <Image Margin="0 0 10 0" Source="/images/Warning-WF.png"></Image>
                         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">Überlauf Grauwasser</TextBlock>
                     </StackPanel>
                 </Border>
-                <TextBlock Grid.Row="1" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    ...tbd...
-                </TextBlock>
+                <StackPanel Grid.Row="1">
+                    <Label Content="Aktoren" Foreground="White" VerticalAlignment="Center"></Label>
+                    <DataGrid MinHeight="300" Margin="10 0 10 0" AutoGenerateColumns="true" ItemsSource="{Binding ActorList}"></DataGrid>
+                    <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Margin="0 0 10 0" Content="Hinzufügen" VerticalAlignment="Center"></Button>
+                        <Button Content="Löschen" VerticalAlignment="Center"></Button>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2">
+                    <Label Content="Sensoren" Foreground="White" VerticalAlignment="Center"></Label>
+                    <DataGrid MinHeight="300" Margin="10 0 10 0" AutoGenerateColumns="true" ItemsSource="{Binding SensorList}"></DataGrid>
+                    <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Margin="0 0 10 0" Content="Hinzufügen" VerticalAlignment="Center"></Button>
+                        <Button Content="Löschen" VerticalAlignment="Center"></Button>
+                    </StackPanel>
+                </StackPanel>
             </Grid>
             <Border Grid.Column="1" BorderBrush="White" BorderThickness="1 0 0 0">
                 <Grid>
@@ -50,9 +66,9 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Source="/assets/img/Cloud sun02-WF.png"></Image>
+                                    <Image VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Source="/images/Cloud sun02-WF.png"></Image>
                                     <TextBlock Grid.Column="1" Foreground="White" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left">20 °</TextBlock>
-                                    <Image VerticalAlignment="Center" Grid.Column="0" Source="/assets/img/Wind.png" Grid.Row="1"></Image>
+                                    <Image VerticalAlignment="Center" Grid.Column="0" Source="/images/Wind.png" Grid.Row="1"></Image>
                                     <TextBlock Grid.Column="1" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5" Grid.Row="1">12 km/h</TextBlock>
                                 </Grid>
                             </Border>
@@ -68,11 +84,11 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image VerticalAlignment="Center" Grid.Column="0" Source="/assets/img/Solar.png"></Image>
+                                    <Image VerticalAlignment="Center" Grid.Column="0" Source="/images/Solar.png"></Image>
                                     <TextBlock Grid.Column="1" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left">3.545 W</TextBlock>
-                                    <Image VerticalAlignment="Center" Grid.Column="0" Source="/assets/img/Man-01.png" Grid.Row="1"></Image>
+                                    <Image VerticalAlignment="Center" Grid.Column="0" Source="/images/Man-01.png" Grid.Row="1"></Image>
                                     <TextBlock Grid.Column="1" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5" Grid.Row="1">0</TextBlock>
-                                    <Image VerticalAlignment="Center" Grid.Column="0" Source="/assets/img/Lock-WF.png" Grid.Row="2"></Image>
+                                    <Image VerticalAlignment="Center" Grid.Column="0" Source="/images/Lock-WF.png" Grid.Row="2"></Image>
                                     <TextBlock Grid.Column="1" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5" Grid.Row="2">OK</TextBlock>
                                 </Grid>
                             </Border>
@@ -87,9 +103,9 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Source="/assets/img/Message Mail-WF.png"></Image>
+                                    <Image VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Source="/images/Message Mail-WF.png"></Image>
                                     <TextBlock Grid.Column="1" Foreground="White" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left">7</TextBlock>
-                                    <Image VerticalAlignment="Center" Grid.Column="0" Source="/assets/img/Tasks.png" Grid.Row="1"></Image>
+                                    <Image VerticalAlignment="Center" Grid.Column="0" Source="/images/Tasks.png" Grid.Row="1"></Image>
                                     <TextBlock Grid.Column="1" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5" Grid.Row="1">4</TextBlock>
                                 </Grid>
                             </Border>
@@ -128,11 +144,12 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="/assets/img/Bell New-WF.png" Grid.Column="0" Grid.Row="0"></Image>
-                                <Image Source="/assets/img/Speaker Decrease - 01.png" Grid.Column="1" Grid.Row="0"></Image>
+                                <Image Source="/images/Bell New-WF.png" Grid.Column="0" Grid.Row="0"></Image>
+                                <Image Source="/images/Speaker Decrease - 01.png" Grid.Column="1" Grid.Row="0"></Image>
                                 <TextBlock Foreground="White" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16">4</TextBlock>
-                                <Image Source="/assets/img/Speaker Increase - 02.png" Grid.Column="3" Grid.Row="0"></Image>
-                                <TextBlock Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.ColumnSpan="4" Grid.Row="1">12:34</TextBlock>
+                                <Image Source="/images/Speaker Increase - 02.png" Grid.Column="3" Grid.Row="0"></Image>
+                                <Label Content="{Binding CurrentTime}" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1"></Label>
+                                <Label Content="{Binding CurrentDate}" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1"></Label>
                             </Grid>
                         </Border>
                     </Grid>
